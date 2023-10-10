@@ -6,9 +6,6 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
-def homepage(request):
-    return HttpResponse("Hello World")
-
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
