@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentification.urls')),
-    path('', include('emotiondetector.urls')),
-    path('',include('live.urls')),
+    path('', include('emotiondetector.urls', namespace='emotiondetector')),
+    path('live/',include('live.urls', namespace='live')),
 ]
 
 if settings.DEBUG:

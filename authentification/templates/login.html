@@ -8,7 +8,7 @@
 <header class="bg-white">
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
-            <a href="#" class="navbar-brand">
+            <a href="" class="navbar-brand">
                 <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -40,7 +40,7 @@
                         <div class="mb-3 text-center">
                         <button class="btn btn-primary btn-block" type="submit">Log In</button>
                         <p class="text-center mt-3">
-                            <small>Don't have an account? <a href="/register">Create an account</a>.</small></p>
+                            <small>Don't have an account? <a href="{% url 'register' %}">Create an account</a>.</small></p>
                         </div>
                     </form>
                 </div>

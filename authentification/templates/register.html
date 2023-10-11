@@ -9,7 +9,7 @@
 <header class="bg-white">
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
-            <a href="#" class="navbar-brand">
+            <a href="" class="navbar-brand">
                 <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -51,7 +51,7 @@
                         <div class="mb-3 text-center">
                             <button class="btn btn-primary btn-block mt-4" type="submit">Sign Up</button>
                         <p class="text-center mt-3">
-                            <small>Already have an account? <a href="/login">Log in</a> instead.</small>
+                            <small>Already have an account? <a href="{% url 'login' %}">Log in</a> instead.</small>
                         </p>
                         </div>
                     </form>                                       

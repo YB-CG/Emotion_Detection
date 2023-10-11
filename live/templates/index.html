@@ -3,14 +3,57 @@
 {% load static %}
 
 {% block content %}
-
-
-  <head>
-    <title>Facial Facial Expression Recognition</title>
-  </head>
   <body>
-    <img id="bg" width=800px height=640px src="{% url 'video_feed' %}">
+    <div class="container px-6 py-16 mx-auto">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="lg:max-w-lg">
+            <h1 class="text-3xl font-semibold text-primary mb-4">Emotion <br><span class="text-primary">detection</span></h1>
+            <p class="mt-3 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores quo odio reprehenderit nulla non omnis ut perspiciatis velit, porro reiciendis sequi voluptate numquam assumenda labore quaerat! Saepe eveniet at suscipit?</p>
+            <button id="start-button" class="btn btn-primary btn-block mt-6">Start Live</button>
+            <button id="end-button" class="btn btn-danger btn-block mt-6" style="display: none;">End Live</button>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-6 mt-lg-0">
+          <img id="bg" class="w-75" src="{% url 'live:video_feed' %}" style="display: none;">
+        </div>
+      </div>
+    </div>    
   </body>
-</html>
+  
 
+  <script>
+    const startButton = document.getElementById("start-button");
+    const endButton = document.getElementById("end-button");
+    const image = document.getElementById("bg");
+
+    // Check local storage for the initial state
+    const initialState = localStorage.getItem('imageState');
+
+    if (initialState === 'visible') {
+      image.style.display = "block";
+      startButton.style.display = "none";
+      endButton.style.display = "block";
+    } else {
+      image.style.display = "none";
+      startButton.style.display = "block";
+      endButton.style.display = "none";
+    }
+
+    startButton.addEventListener("click", () => {
+      image.style.display = "block";
+      startButton.style.display = "none";
+      endButton.style.display = "block";
+      // Store the state in local storage
+      localStorage.setItem('imageState', 'visible');
+    });
+
+    endButton.addEventListener("click", () => {
+      image.style.display = "none";
+      startButton.style.display = "block";
+      endButton.style.display = "none";
+      // Store the state in local storage
+      localStorage.setItem('imageState', 'hidden');
+    });
+  </script>
 {% endblock %}

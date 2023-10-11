@@ -4,19 +4,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
-#decorators
-def unauthentificated_user(view_func):
-    def wrapper_func(request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('homepage')
-        else:
-            return view_func(request, *args, **kwargs)
-    return wrapper_func
+
 
 
 # Create your views here.
 
-@unauthentificated_user
+
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -24,13 +17,13 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful")
-            return redirect('homepage')
+            return redirect('emotiondetector:homepage')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render (request=request, template_name="register.html", context={"register_form":form})
 
 
-@unauthentificated_user
+
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -41,7 +34,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect('homepage')
+                return redirect('emotiondetector:homepage')
             else:
                 messages.info(request, f"Invalid username or password.")
         else:

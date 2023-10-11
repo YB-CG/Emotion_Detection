@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-white">
     <div class="d-flex justify-content-between container ">
-        <a href="#" class="navbar-brand me-auto">
+        <a href="{% url 'emotiondetector:homepage' %}" class="navbar-brand me-auto">
             <!-- This logo will be positioned at the left end -->
             <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
         </a>
@@ -20,11 +20,8 @@
             <a class="nav-link" href="#">Upload</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Live</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
+            <a class="nav-link" href="{% url 'live:index' %}">Live</a>
+        </li>        
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -34,7 +31,6 @@
       </div>
     </div>
 </nav>
-  
   
 
 <style>
