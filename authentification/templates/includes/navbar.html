@@ -1,34 +1,41 @@
 {% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <nav class="navbar navbar-expand-md navbar-light bg-white">
-  <div class="container">
-      <a href="#" class="navbar-brand">
-          <img class="w-50" src="{% static 'img/logo.jpg' %}" alt="">
-      </a>
-      <button x-cloak @click="isOpen = !isOpen" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+    <div class="d-flex justify-content-between container ">
+        <a href="#" class="navbar-brand me-auto">
+            <!-- This logo will be positioned at the left end -->
+            <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
+        </a>
+    
 
+        <button x-cloak @click="isOpen = !isOpen" type="button" class="navbar-toggler ms-auto" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- Custom Font Awesome icon (bars) -->
+            <i class="fas fa-bars"></i>
+        </button>
+  
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Upload</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Live</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Live</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
         </ul>
-    </div>    
-  </div>
+      </div>
+    </div>
 </nav>
+  
+  
 
 <style>
   /* CSS to style the navbar links */
