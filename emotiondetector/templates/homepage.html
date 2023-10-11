@@ -1,12 +1,23 @@
 {% extends "header.html" %}
 
+{% load static %}
 
 {% block content %}
 
+<div class="container px-6 py-16 mx-auto">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <div class="lg:max-w-lg">
+                <h1 class="text-3xl font-semibold text-primary mb-4 d-none d-lg-block">Emotion <br><span class="text-primary">detection</span></h1>
+                <p class="mt-3 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores quo odio reprehenderit nulla non omnis ut perspiciatis velit, porro reiciendis sequi voluptate numquam assumenda labore quaerat! Saepe eveniet at suscipit?</p>
+            </div>
+        </div>
 
-
-<div class="container py-5">
-    <h1>homepage</h1>
+        <div class="col-lg-6 mt-6 mt-lg-0">
+            <img class="w-100" src="{% static 'img/image.jpg' %}" alt="">
+        </div>
+    </div>
 </div>
+
 
 {% endblock %}

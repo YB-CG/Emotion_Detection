@@ -1,47 +1,66 @@
 {% extends "header.html" %}
-
+{% load static %}
 {% block content %}
 
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
-<!-- Register -->
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Image on the left side -->
-            <img src="your-image-url.jpg" alt="Your Image" class="img-fluid rounded-circle">
-        </div>
-        <div class="col-md-6">
-            <!-- Registration form on the right side -->
-            <div class="text-center">
-                <h1 class="display-4 mb-4">Create Your Account</h1>
+<!-- Registration -->
+<header class="bg-white">
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <img class="w-50" src="{% static 'img/logo.jpg' %}" alt="">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <h1 class="display-3 font-weight-bold text-primary">Emotion <br><span class="text-primary">detection</span></h1>
             </div>
-            <form method="POST">
-                {% csrf_token %}
-                {{ register_form|crispy }}
-
-                <!-- Apply custom CSS classes to labels and comments -->
-                <style>
-                    /* Style labels */
-                    label {
-                        font-weight: bold;
-                        color: #007BFF;
-                    }
-
-                    /* Style comments */
-                    .form-text {
-                        font-size: 14px;
-                        color: #6c757d;
-                    }
-                </style>
-
-                <button class="btn btn-primary btn-block mt-4" type="submit">Sign Up</button>
-            </form>
-            <p class="text-center mt-3">
-                <small>Already have an account? <a href="/login">Log in</a> instead.</small>
-            </p>
+            
+        </div>
+    </nav>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="lg:max-w-lg">
+                    <!-- Your registration form goes here -->
+                    <form class="bg-blue p-4 rounded-lg" method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <h2 class="text-2xl font-semibold text-primary mb-4">Create Your Account</h2>
+                        <div class="mb-3">
+                            {{ register_form.username.label_tag }}
+                            {{ register_form.username|add_class:"form-control" }}
+                            <small class="form-text text-muted">Required. 150 characters or fewer. Letters, digits, and @/./+/-/_ only.</small>
+                        </div>
+                        <div class="mb-3">
+                            {{ register_form.email.label_tag }}
+                            {{ register_form.email|add_class:"form-control" }}
+                            <small class="form-text text-muted">Enter a valid email address.</small>
+                        </div>
+                        <div class="mb-3">
+                            {{ register_form.password1.label_tag }}
+                            {{ register_form.password1|add_class:"form-control" }}
+                            <small class="form-text text-muted">
+                                Your password must contain at least 8 characters.
+                            </small>
+                        </div>
+                        <div class="mb-3">
+                            {{ register_form.password2.label_tag }}
+                            {{ register_form.password2|add_class:"form-control" }}
+                            <small class="form-text text-muted">Enter the same password as before, for verification.</small>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary btn-block mt-4" type="submit">Sign Up</button>
+                        <p class="text-center mt-3">
+                            <small>Already have an account? <a href="/login">Log in</a> instead.</small>
+                        </p>
+                        </div>
+                    </form>                                       
+                </div>
+            </div>
+            <div class="d-none d-lg-flex col-lg-6 align-items-center justify-content-center">
+                <img class="w-100" src="{% static 'img/image.jpg' %}" alt="">
+            </div>
         </div>
     </div>
-</div>
-
+</header>
 {% endblock %}
