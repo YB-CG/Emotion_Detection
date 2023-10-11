@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authentification',
     'crispy_forms',
     'widget_tweaks',
+    'live'
 ]
 
 MIDDLEWARE = [

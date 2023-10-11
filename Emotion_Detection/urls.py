@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentification.urls')),
     path('', include('emotiondetector.urls')),
+    path('',include('live.urls')),
 ]
 
 if settings.DEBUG:
