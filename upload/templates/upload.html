@@ -1,0 +1,72 @@
+{% extends "header.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="container p-y-3">
+  <div class="row m-b-1">
+      <!-- Upload Image Form (Left on large screens, Top on small screens) -->
+      <div class="col-sm-6">
+          <p class="mt-4">
+              This image emotion detection system can analyze and identify the following seven types of emotions: 
+              happiness, sadness, anger, surprise, fear, disgust, and neutral.
+          </p>
+          <div class="form-group inputDnD">
+              <label class="sr-only" for="imageInputFile">Image Upload</label>
+              <input type="file" class="form-control-file text-primary font-weight-bold" id="imageInputFile" accept="image/*" onchange="readUrl(this, 'image')" data-title="Drag and drop an image">
+          </div>
+          <div class="row">
+              <div class="col-6">
+                  <button type="button" class="btn btn-primary btn-block" id="addImageButton" onclick="document.getElementById('imageInputFile').click()">Add Image</button>
+                  <button type="submit" class="btn btn-info btn-block ml-auto" id="submitImageButton" style="display: none;">Submit Image</button>
+              </div>
+          </div>
+      </div>
+
+      <!-- Upload Video Form (Right on large screens, Bottom on small screens) -->
+      <div class="col-sm-6">
+          <p class="mt-4">
+              This video emotion detection system can analyze and identify the following seven types of emotions: 
+              happiness, sadness, anger, surprise, fear, disgust, and neutral.
+          </p>
+          <div class="form-group inputDnD">
+              <label class="sr-only" for="videoInputFile">Video Upload</label>
+              <input type="file" class="form-control-file text-primary font-weight-bold" id="videoInputFile" accept="video/*" onchange="readUrl(this, 'video')" data-title="Drag and drop a video">
+          </div>
+          <div class="row">
+              <div class="col-6">
+                  <button type="button" class="btn btn-primary btn-block" id="addVideoButton" onclick="document.getElementById('videoInputFile').click()">Add Video</button>
+                  <button type="submit" class="btn btn-info btn-block ml-auto" id="submitVideoButton" style="display: none;">Submit Video</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+function readUrl(input, fileType) {
+  if (input.files && input.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+          let imgData = e.target.result;
+          let imgName = input.files[0].name;
+          input.setAttribute("data-title", imgName);
+          if (fileType === 'image') {
+              document.getElementById("addImageButton").style.display = "none";
+              document.getElementById("submitImageButton").style.display = "block";
+          } else if (fileType === 'video') {
+              document.getElementById("addVideoButton").style.display = "none";
+              document.getElementById("submitVideoButton").style.display = "block";
+          }
+          console.log(e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+
+
+{% endblock %}

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('authentification.urls')),
     path('', include('emotiondetector.urls', namespace='emotiondetector')),
     path('live/',include('live.urls', namespace='live')),
+    path('upload/',include('upload.urls', namespace='upload')),
 ]
 
 if settings.DEBUG:
