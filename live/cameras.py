@@ -3,16 +3,15 @@ import os
 from live.models import FacialExpressionModel
 import numpy as np
 
-# Get the path to the models directory
-models_dir = os.path.dirname(os.path.abspath(__file__)) + '/models/'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
+DETECTION_MODEL_PATH = os.path.join(MODELS_DIR, 'haarcascade_frontalface_default.xml')
+MODEL_JSON_FILE = os.path.join(MODELS_DIR, 'model.json')
+MODEL_WEIGHTS_FILE = os.path.join(MODELS_DIR, 'model_weights.h5')
 
-# Define the paths to the model and CascadeClassifier files
-model_json_file = os.path.join(models_dir, 'model.json')
-model_weights_file = os.path.join(models_dir, 'model_weights.h5')
-face_cascade_file = os.path.join(models_dir, 'haarcascade_frontalface_default.xml')
+model = FacialExpressionModel(MODEL_JSON_FILE, MODEL_WEIGHTS_FILE)
+face_detection = cv2.CascadeClassifier(DETECTION_MODEL_PATH)
 
-facec = cv2.CascadeClassifier(face_cascade_file)
-model = FacialExpressionModel(model_json_file, model_weights_file)
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 class VideoCamera(object):
@@ -22,20 +21,18 @@ class VideoCamera(object):
     def __del__(self):
         self.video.release()
 
-    # returns camera frames along with bounding boxes and predictions
     def get_frame(self):
-        _, fr = self.video.read()
-        gray_fr = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
-        faces = facec.detectMultiScale(gray_fr, 1.3, 5)
+        _, frame = self.video.read()
+        gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_detection.detectMultiScale(gray_frame, 1.3, 5)
 
         for (x, y, w, h) in faces:
-            fc = gray_fr[y:y+h, x:x+w]
+            face = gray_frame[y:y+h, x:x+w]
+            roi = cv2.resize(face, (48, 48))
+            prediction = model.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
 
-            roi = cv2.resize(fc, (48, 48))
-            pred = model.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
+            cv2.putText(frame, prediction, (x, y), font, 1, (255, 255, 0), 2)
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
-            cv2.putText(fr, pred, (x, y), font, 1, (255, 255, 0), 2)
-            cv2.rectangle(fr,(x,y),(x+w,y+h),(255,0,0),2)
-
-        _, jpeg = cv2.imencode('.jpg', fr)
+        _, jpeg = cv2.imencode('.jpg', frame)
         return jpeg.tobytes()
