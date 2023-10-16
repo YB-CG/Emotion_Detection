@@ -4,11 +4,13 @@ import numpy as np
 
 import tensorflow as tf
 
+# Set TensorFlow logging level to ERROR to suppress INFO and WARNING messages
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.15
 session = tf.compat.v1.Session(config=config)
 set_session(session)
-
 
 class FacialExpressionModel(object):
 
@@ -22,8 +24,6 @@ class FacialExpressionModel(object):
 
         # load weights into the new model
         self.loaded_model.load_weights(model_weights_file)
-        #self.loaded_model.compile()
-        #self.loaded_model._make_predict_function()
 
     def predict_emotion(self, img):
         global session
