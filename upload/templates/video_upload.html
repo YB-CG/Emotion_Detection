@@ -1,0 +1,45 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">Video Emotion Classification</h1>
+    
+    <p class="mt-4">
+        This video emotion detection system can analyze and identify emotions in each frame of the video.
+    </p>
+    
+    <form method="post" enctype="multipart/form-data" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="videoInput" class="form-label">Select a Video</label>
+            <input type="file" class="form-control" id="videoInput" name="video" accept="video/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Video</button>
+    </form>
+    
+    {% if original_video_path %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mt-4">Original Video</h2>
+            <video controls class="w-100">
+                <source src="{{ original_video_path }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if output_video_path %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mt-4">Output Video</h2>
+            <video controls class="w-100">
+                <source src="{{ output_video_path }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
