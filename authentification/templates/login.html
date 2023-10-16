@@ -6,7 +6,7 @@
 
 <!-- Login -->
 <header class="bg-white">
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <nav class="navbar navbar-expand-md navbar-light" style="background: linear-gradient(45deg, #2196F3, #64B5F6); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
         <div class="container">
             <a href="" class="navbar-brand">
                 <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
@@ -16,7 +16,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <h1 class="display-3 font-weight-bold text-primary">Emotion <br><span class="text-primary">detection</span></h1>
+                <h1 class="display-3 font-weight-bold text-light" style="background: linear-gradient(45deg, #2196F3, #64B5F6); -webkit-background-clip: text; color: transparent;">Emotion <br><span style="background: linear-gradient(45deg, #2196F3, #64B5F6); -webkit-background-clip: text; color: transparent;" class="text-light">Detection</span></h1>
             </div>
         </div>
     </nav>
@@ -28,7 +28,7 @@
                     <!-- Your login form goes here -->
                     <form class="bg-white p-4 rounded-lg" method="POST" action="{% url 'login' %}"> {# Assuming your login URL name is 'login' #}
                         {% csrf_token %}
-                        <h2 class="text-2xl font-semibold text-primary mb-4">Login</h2>
+                        <h2 class="text-2xl font-semibold text-primary mb-4" style="background: linear-gradient(45deg, #2196F3, #64B5F6); -webkit-background-clip: text; color: transparent;">Login</h2>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" id="username" class="form-control" name="username" placeholder="Username">
@@ -38,9 +38,9 @@
                             <input type="password" id="password" class="form-control" name="password" placeholder="Password">
                         </div>
                         <div class="mb-3 text-center">
-                        <button class="btn btn-primary btn-block" type="submit">Log In</button>
-                        <p class="text-center mt-3">
-                            <small>Don't have an account? <a href="{% url 'register' %}">Create an account</a>.</small></p>
+                            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+                            <p class="text-center mt-3">
+                                <small>Don't have an account? <a href="{% url 'register' %}">Create an account</a>.</small></p>
                         </div>
                     </form>
                 </div>

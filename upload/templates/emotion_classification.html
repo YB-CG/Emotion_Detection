@@ -2,11 +2,20 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h1 class="display-4">Emotion Classification</h1>
+<style>
+    .fixed-size-image {
+        max-width: 100%; /* Ensures the image fits within the container */
+        height: auto; /* Maintains the aspect ratio of the original image */
+        display: block; /* Prevents any inline spacing issues */
+        margin: 0 auto; /* Centers the image horizontally */
+    }
+</style>
+
+<div class="container px-6 py-16 mx-auto">
+    <div class="row align-items-center">
+    <h1 class="text-3xl font-semibold text-primary mb-4">Emotion <br><span class="text-primary">detection</span></h1>
     <p class="mt-4">
-        This image emotion detection system can analyze and identify the following seven types of emotions: 
-        happiness, sadness, anger, surprise, fear, disgust, and neutral.
+        Welcome to our Emotion Classification tool! Upload an image, and we'll analyze it to identify seven different emotions: happiness, sadness, anger, surprise, fear, disgust, and neutral. See what emotions your image reveals!
     </p>
     <form method="post" enctype="multipart/form-data" class="mb-4">
         {% csrf_token %}
@@ -22,7 +31,7 @@
             {% if original_image_path %}
             <div class="text-center mt-4">
                 <h2>Original Image</h2>
-                <img src="{{ original_image_path }}" alt="Original Image" class="img-fluid">
+                <img src="{{ original_image_path }}" alt="Original Image" class="img-thumbnail img-fluid fixed-size-image">
             </div>
             {% endif %}
         </div>
@@ -30,7 +39,7 @@
             {% if labeled_image_path %}
             <div class="text-center mt-4">
                 <h2>Processed Image</h2>
-                <img src="{{ labeled_image_path }}" alt="Processed Image" class="img-fluid">
+                <img src="{{ labeled_image_path }}" alt="Processed Image" class="img-thumbnail img-fluid fixed-size-image">
                 
                 {% if "No face detected" in results.0.0 %}
                     <p class="text-danger">No faces were detected in the uploaded image.</p>
@@ -38,6 +47,7 @@
             </div>
             {% endif %}
         </div>
+    </div>
     </div>
 </div>
 

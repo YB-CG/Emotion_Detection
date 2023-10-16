@@ -1,48 +1,60 @@
 {% load static %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<nav class="navbar navbar-expand-md navbar-light bg-white">
-    <div class="d-flex justify-content-between container ">
+<nav class="navbar navbar-expand-md navbar-dark" style="background: linear-gradient(45deg, #2196F3, #64B5F6); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+    <div class="container">
         <a href="{% url 'emotiondetector:homepage' %}" class="navbar-brand me-auto">
-            <!-- This logo will be positioned at the left end -->
             <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
         </a>
-    
 
         <button x-cloak @click="isOpen = !isOpen" type="button" class="navbar-toggler ms-auto" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <!-- Custom Font Awesome icon (bars) -->
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars text-light"></i>
         </button>
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'upload:upload' %}">Upload</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'live:index' %}">Live</a>
-        </li>        
-        </ul>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
-        </ul>
-      </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'upload:upload_image' %}">
+                        <i class="fas fa-cloud-upload-alt me-2"></i> Upload Image
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'live:index' %}">
+                        <i class="fas fa-video me-2"></i> Live
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'logout' %}">
+                        </i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
-  
 
 <style>
-  /* CSS to style the navbar links */
-.navbar-nav .nav-link {
-    color: #333; /* Set the default color */
-    font-weight: bold; /* Make the text bold */
-    margin-right: 15px; /* Add some space between the links */
-    transition: color 0.3s; /* Smooth color transition on hover */
-}
+    /* Additional CSS for a creative, animated navbar with a bluish theme */
+    .navbar {
+        background: linear-gradient(45deg, #2196F3, #64B5F6);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-.navbar-nav .nav-link:hover {
-    color: #007bff; /* Change color on hover (blue in this example) */
-}
+    .navbar-nav .nav-link {
+        color: #fff;
+        font-weight: bold;
+        margin-right: 15px;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #ffcc00; /* Yellow on hover for a subtle contrast */
+        transition: color 0.3s;
+    }
+
+    .nav-link i {
+        font-size: 20px;
+    }
 </style>

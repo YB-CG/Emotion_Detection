@@ -9,8 +9,10 @@ from keras.preprocessing.image import img_to_array
 from django.http import JsonResponse
 from keras.models import load_model
 from django.core.files.base import ContentFile
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='login')  # Replace 'login' with the actual URL name of your login page
 def upload(request):
     return render(request, 'upload.html')
 
@@ -52,7 +54,7 @@ def predict_emotion(image):
 
     return results
 
-
+@login_required(login_url='login')  # Replace 'login' with the actual URL name of your login page
 def upload_image(request):
     if request.method == 'POST' and request.FILES['image']:
         uploaded_image = request.FILES['image']
@@ -162,6 +164,7 @@ class VideoCamera(object):
 
         return frame_paths
 
+@login_required(login_url='login')  # Replace 'login' with the actual URL name of your login page
 def upload_video(request):
     if request.method == 'POST' and request.FILES.get('video'):
         uploaded_video = request.FILES['video']

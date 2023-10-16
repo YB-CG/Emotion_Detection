@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
 from live.cameras import VideoCamera
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+@login_required(login_url='login')  # Replace 'login' with the actual URL name of your login page
 def index(request):
     return render(request, 'index.html')
 

@@ -7,15 +7,18 @@
 
 <!-- Registration -->
 <header class="bg-white">
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <nav class="navbar navbar-expand-md navbar-light" style="background: linear-gradient(45deg, #2196F3, #64B5F6); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
         <div class="container">
             <a href="" class="navbar-brand">
                 <img class="w-50" src="{% static 'img/logo.png' %}" alt="">
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <h1 class="display-3 font-weight-bold text-primary">Emotion <br><span class="text-primary">detection</span></h1>
+                <h1 class="display-3 font-weight-bold text-light" style="background: linear-gradient(45deg, #2196F3, #64B5F6); -webkit-background-clip: text; color: transparent;">Emotion <br><span style="background: linear-gradient(45deg, #2196F3, #64B5F6); -webkit-background-clip: text; color: transparent;" class="text-light">Detection</span></h1>
             </div>
-            
         </div>
     </nav>
     <div class="container py-4">
