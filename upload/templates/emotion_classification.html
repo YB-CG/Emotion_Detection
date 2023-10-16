@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-4">Emotion Classification</h1>
+    <p class="mt-4">
+        This image emotion detection system can analyze and identify the following seven types of emotions: 
+        happiness, sadness, anger, surprise, fear, disgust, and neutral.
+    </p>
+    <form method="post" enctype="multipart/form-data" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="imageInput" class="form-label">Select an Image</label>
+            <input type="file" class="form-control" id="imageInput" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+    </form>
+    
+    <div class="row">
+        <div class="col-md-6">
+            {% if original_image_path %}
+            <div class="text-center mt-4">
+                <h2>Original Image</h2>
+                <img src="{{ original_image_path }}" alt="Original Image" class="img-fluid">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if labeled_image_path %}
+            <div class="text-center mt-4">
+                <h2>Processed Image</h2>
+                <img src="{{ labeled_image_path }}" alt="Processed Image" class="img-fluid">
+                
+                {% if "No face detected" in results.0.0 %}
+                    <p class="text-danger">No faces were detected in the uploaded image.</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
