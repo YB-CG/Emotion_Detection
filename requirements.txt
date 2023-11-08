@@ -1,6 +1,6 @@
 Django==4.1.3  # Replace with your Django version
 numpy==1.23.0
-opencv-python-headless==4.8.1.78
+opencv-python==4.8.1.78
 imutils==0.5.4
 tensorflow-cpu==2.13.0  # Replace with your TensorFlow version
 keras==2.13.1  # Replace with your Keras version
