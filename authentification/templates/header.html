@@ -22,6 +22,16 @@
       </div>      
 
         {% endfor %}
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const alertDivs = document.querySelectorAll(".alert");
+            alertDivs.forEach(function (alertDiv) {
+              setTimeout(function () {
+                alertDiv.style.display = "none";
+              }, 5000); // 5000 milliseconds = 5 seconds
+            });
+          });
+        </script>
       {% endif %}
       
       {% block content %}
