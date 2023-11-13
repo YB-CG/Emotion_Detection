@@ -15,13 +15,23 @@
     <div class="container">
       <br/>
       {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {% for message in messages %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>      
 
-        {% endfor %}
+      {% endfor %}
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+          const alertDivs = document.querySelectorAll(".alert");
+          alertDivs.forEach(function (alertDiv) {
+              setTimeout(function () {
+              alertDiv.style.display = "none";
+              }, 5000); // 5000 milliseconds = 5 seconds
+          });
+          });
+      </script>
       {% endif %}
       
       {% block content %}
